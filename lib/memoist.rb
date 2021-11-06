@@ -50,11 +50,11 @@ module Memoist
     string
   end
 
-  def self.memoist_eval(klass, *args, &block)
+  def self.memoist_eval(klass, *args, **kwargs, &block)
     if klass.respond_to?(:class_eval)
-      klass.class_eval(*args, &block)
+      klass.class_eval(*args, **kwargs, &block)
     else
-      klass.singleton_class.class_eval(*args, &block)
+      klass.singleton_class.class_eval(*args, **kwargs, &block)
     end
   end
 
